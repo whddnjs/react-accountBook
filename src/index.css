@@ -18,3 +18,14 @@
   font-family: 'nanum-eb';
   src: url(./fonts/NanumSquareEB.otf);
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.box-radio-input input[type='radio']:checked + span {
+  background: #23a3a7;
+  color: #fff;
+}
