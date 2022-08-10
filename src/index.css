@@ -19,6 +19,7 @@
   src: url(./fonts/NanumSquareEB.otf);
 }
 
+/* input number 화살표 지우기 */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
