@@ -14,7 +14,6 @@ function App() {
   });
   const [newHistoryModal, setNewHistoryModal] = useState(false);
   const [moneyHistory, setMoneyHistory] = useState([]);
-  const [historyState, setHistoryState] = useState('total');
 
   if (user === '') {
     return <InputUser user={user} setUser={setUser} />;
@@ -28,8 +27,6 @@ function App() {
           moneyHistory={moneyHistory}
           newHistoryModal={newHistoryModal}
           setNewHistoryModal={setNewHistoryModal}
-          historyState={historyState}
-          setHistoryState={setHistoryState}
         />
         {/* 내역 추가 */}
         {newHistoryModal && (
