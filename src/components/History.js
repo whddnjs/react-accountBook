@@ -1,10 +1,19 @@
 import { useState } from 'react';
 
-function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
+function History({
+  newHistoryModal,
+  setNewHistoryModal,
+  moneyHistory,
+  setMoneyHistory,
+}) {
   const [historyState, setHistoryState] = useState('total');
 
   const inMoney = moneyHistory.filter(his => his.inOut === 'in');
   const outMoney = moneyHistory.filter(his => his.inOut === 'out');
+
+  const deleteHistory = id => {
+    setMoneyHistory(moneyHistory.filter(his => his.id !== id));
+  };
 
   return (
     <div
@@ -13,22 +22,32 @@ function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
       }`}
     >
       <ul className="flex w-full pb-2 mb-2 border-b border-gray-400">
-        <li className="cursor-pointer" onClick={() => setHistoryState('total')}>
+        <li
+          className={`cursor-pointer ${
+            historyState === 'total' ? 'text-black' : 'text-gray-400'
+          }`}
+          onClick={() => setHistoryState('total')}
+        >
           전체 내역
         </li>
         <li
-          className="ml-3 text-gray-400 cursor-pointer"
+          className={`ml-3 text-gray-400 cursor-pointer ${
+            historyState === 'in' ? 'text-black' : 'text-gray-400'
+          }`}
           onClick={() => setHistoryState('in')}
         >
           수입
         </li>
         <li
-          className="ml-3 text-gray-400 cursor-pointer"
+          className={`ml-3 text-gray-400 cursor-pointer ${
+            historyState === 'out' ? 'text-black' : 'text-gray-400'
+          }`}
           onClick={() => setHistoryState('out')}
         >
           지출
         </li>
       </ul>
+
       {/* 전체 내역 */}
       {historyState === 'total' && (
         <>
@@ -36,7 +55,7 @@ function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
             return (
               <div
                 key={his.id}
-                className="flex justify-between w-full h-16 p-2 mt-1 bg-white rounded-md"
+                className="relative flex justify-between w-full h-16 p-2 mt-1 bg-white rounded-md"
               >
                 <div>
                   <span className="text-sm text-gray-400">{his.date}</span>
@@ -52,11 +71,19 @@ function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
                   {his.inOut === 'out' && <span>-</span>}
                   {his.money.toLocaleString('ko-KR')}
                 </div>
+                <button
+                  type="button"
+                  className="absolute top-0 right-0 w-6 h-6"
+                  onClick={() => deleteHistory(his.id)}
+                >
+                  ×
+                </button>
               </div>
             );
           })}
         </>
       )}
+
       {/* 수입 내역 */}
       {historyState === 'in' && (
         <>
@@ -64,7 +91,7 @@ function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
             return (
               <div
                 key={his.id}
-                className="flex justify-between w-full h-16 p-2 mt-1 bg-white rounded-md"
+                className="relative flex justify-between w-full h-16 p-2 mt-1 bg-white rounded-md"
               >
                 <div>
                   <span className="text-sm text-gray-400">{his.date}</span>
@@ -80,11 +107,19 @@ function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
                   {his.inOut === 'out' && <span>-</span>}
                   {his.money.toLocaleString('ko-KR')}
                 </div>
+                <button
+                  type="button"
+                  className="absolute top-0 right-0 w-6 h-6"
+                  onClick={() => deleteHistory(his.id)}
+                >
+                  ×
+                </button>
               </div>
             );
           })}
         </>
       )}
+
       {/* 지출 내역 */}
       {historyState === 'out' && (
         <>
@@ -92,7 +127,7 @@ function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
             return (
               <div
                 key={his.id}
-                className="flex justify-between w-full h-16 p-2 mt-1 bg-white rounded-md"
+                className="relative flex justify-between w-full h-16 p-2 mt-1 bg-white rounded-md"
               >
                 <div>
                   <span className="text-sm text-gray-400">{his.date}</span>
@@ -108,6 +143,13 @@ function History({ newHistoryModal, setNewHistoryModal, moneyHistory }) {
                   {his.inOut === 'out' && <span>-</span>}
                   {his.money.toLocaleString('ko-KR')}
                 </div>
+                <button
+                  type="button"
+                  className="absolute top-0 right-0 w-6 h-6"
+                  onClick={() => deleteHistory(his.id)}
+                >
+                  ×
+                </button>
               </div>
             );
           })}

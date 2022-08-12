@@ -3,7 +3,6 @@ let id = 0;
 function AddNewHistory({
   money,
   setMoney,
-  moneyHistory,
   setMoneyHistory,
   setNewHistoryModal,
 }) {
@@ -18,7 +17,7 @@ function AddNewHistory({
       content: e.target.content.value,
     };
 
-    console.log(formData);
+    // console.log(formData);
 
     if (
       formData.inOut === '' ||

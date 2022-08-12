@@ -16,6 +16,7 @@ function App() {
   const [moneyHistory, setMoneyHistory] = useState([]);
 
   if (user === '') {
+    // 유저 입력
     return <InputUser user={user} setUser={setUser} />;
   } else {
     return (
@@ -25,6 +26,7 @@ function App() {
         {/* 내역 및 추가 버튼 */}
         <History
           moneyHistory={moneyHistory}
+          setMoneyHistory={setMoneyHistory}
           newHistoryModal={newHistoryModal}
           setNewHistoryModal={setNewHistoryModal}
         />
@@ -33,7 +35,6 @@ function App() {
           <AddNewHistory
             money={money}
             setMoney={setMoney}
-            moneyHistory={moneyHistory}
             setMoneyHistory={setMoneyHistory}
             setNewHistoryModal={setNewHistoryModal}
           />
